@@ -9,10 +9,11 @@ function updateUser(e){
 function createUser(e){
     e.preventDefault()
     if(confPassword===newUser.password&&newUser.password.length>=6){
-        fetch(`http://localhost:3000/users`,{
+        fetch(`/users`,{
             method:'POST',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Accept': 'application/json'
             },
             body:JSON.stringify(newUser)
         })
