@@ -1,14 +1,14 @@
 import React, {useReducer, useState} from 'react'
 
 function SignupForm({setCurrentUser,handleLogin}) {
-const [newUser, setNewUser] = useState({email:"",password:"",name:"",confPassword:""})
-
+const [newUser, setNewUser] = useState({email:"",password:"",name:""})
+const[confPassword,setConfPassword]=useState("")
 function updateUser(e){
     setNewUser({...newUser,[e.target.name]:e.target.value})
 }
 function createUser(e){
     e.preventDefault()
-    if(newUser.confPassword===newUser.password&&newUser.password.length>=6){
+    if(confPassword===newUser.password&&newUser.password.length>=6){
         fetch(`http://localhost:3000/users`,{
             method:'POST',
             headers:{
@@ -20,7 +20,7 @@ function createUser(e){
         .then(newUser => {
             setCurrentUser(newUser)
         })
-    } else if(newUser.confPassword!==newUser.password) {
+    } else if(confPassword!==newUser.password) {
         alert("passwords do not match")
     } else if(newUser.password.length < 6) {alert("password needs to be 6 characters minumum")}
 }
@@ -38,7 +38,7 @@ return(<div className="signup">
     <input type="password" name="password" value={`${newUser.password}`}onChange={updateUser}></input>
     <br></br>
     <label for="conf_password">Confirm Password</label>
-    <input type="password" name="confPassword" value={`${newUser.confPassword}`}onChange={updateUser}></input>
+    <input type="password" name="confPassword" value={`${confPassword}`}onChange={(e)=>setConfPassword(e.target.value)}></input>
     <br></br>
    <button type="submit">Create Account</button>
 </form>
