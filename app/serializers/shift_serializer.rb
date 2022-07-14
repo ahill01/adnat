@@ -1,5 +1,5 @@
 class ShiftSerializer < ActiveModel::Serializer
-    attributes :date, :start_time, :finish_time, :break_length, :hours_worked
+    attributes :date, :start_time, :finish_time, :break_length, :hours_worked, :shift_cost
 
     def start_time
        return self.object.start.strftime('%I:%M:%S :%p')
@@ -15,7 +15,12 @@ class ShiftSerializer < ActiveModel::Serializer
 
     def hours_worked
         worked = (self.object.finish - self.object.start)/1.minutes
-        return ((worked - self.object.break_length)/60).to_i
+        @total_hrs_worked = ((worked - self.object.break_length)/60).to_i
+        return @total_hrs_worked
+    end
+
+    def shift_cost
+        self.object.organization.hourly_rate*@total_hrs_worked
     end
 
 

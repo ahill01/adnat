@@ -6,6 +6,7 @@ function Shifts({currentUser, shifts}){
 
     return(<div>
 <table>
+    <thead>
     <tr>
         <th>Employee Name</th>
         <th>Shift Date</th>
@@ -15,7 +16,10 @@ function Shifts({currentUser, shifts}){
         <th>Hours Worked</th>
         <th>Shift Cost</th>
     </tr>
+    </thead>
+    <tbody>
     {shifts.map((shift) => {
+        {console.log(shift)}
         <tr>
         <td>{shift.date}</td>
         <td>{shift.start_time}</td>
@@ -32,6 +36,7 @@ function Shifts({currentUser, shifts}){
             <td><input type="text" name="break_length"></input></td>
             <td><button>create shift</button></td>
         </tr>
+        </tbody>
      
 </table>
     </div>)
