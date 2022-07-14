@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
+import {Navigate, useNavigate} from 'react-router-dom';
 
 function LoginPage({setCurrentUser,handleLogin}) {
 const [credentials, setCredentials] = useState({email:"",password:""})
+let navigate = useNavigate();
 
 function handleLogin(e){
     e.preventDefault()
-    fetch('http://localhost:3000/login', {
+    fetch('/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({credentials}) 
@@ -16,6 +18,7 @@ function handleLogin(e){
    })
    .then((user) => {
        setCurrentUser(user)
+       navigate('/orghome')
     })
     .catch((error) =>{
         console.log('error: '+error)
@@ -31,9 +34,9 @@ return (
 <div className="login">
     <h1>Log In</h1>
    <form onSubmit={handleLogin}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input type="text" name="email" value={`${credentials.email}`} onChange={updateCredentials}></input>
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input type="password" name="password" value={`${credentials.password}`}onChange={updateCredentials}></input>
        <button type="submit">Log In</button>
    </form>

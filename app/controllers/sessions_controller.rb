@@ -1,13 +1,14 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
     def create 
         user = User.find_by(email: session_params[:email])
         if user && user.authenticate(session_params[:password])
-            session[:user_id] = user.includerender json: user, response: :ok
+            session[:user_id] = user.id
+            render json: user, response: :ok
         else 
-            render json: {
-                errors: ['no such user', 'verify credentials and try again or signup'], status: : not_found
-            }
-        end
+            render json: { 
+                errors: ['no such user', 'verify credentials and try again or signup']
+              }, status: :not_found
+            end
     end
 
     def destroy

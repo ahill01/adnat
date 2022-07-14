@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :shifts
   resources :users, only:[:create, :update, :show, :index, :destroy]
-  resources :organizations
+  resources :organizations, only:[:create, :update, :show, :index, :destroy]
 
-  post '/login', to: "sessions_controller#create"
-  delete '/logout', to: "sessions_controller#destroy"
+  post '/login', to: "sessions#create"
+  delete '/logout', to: "sessions#destroy"
 end
