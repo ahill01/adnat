@@ -4,17 +4,16 @@ import OrgList from "./OrgList"
 import NewOrgForm from "./NewOrgForm"
 import EditOrgForm from "./EditOrgForm"
 
-function OrgHome({currentUser, orgs, setOrgs}){
-const[userOrgs,setUserOrgs]=useState([])
-useEffect(()=>{
-    fetch(`/organizations/${currentUser.organization_id}`)
-    .then(res=> res.json())
-    .then(org => setUserOrgs(org))
-},[])
+function OrgHome({currentUser}){
+const [orgs, setOrgs]=useState([])
+
+useEffect(() => {
+      fetch('/organizations')
+    .then(res => res.json())
+    .then(orgsList => setOrgs(orgsList))}, [])
+
 
     return(<div>
-        <p>logged in as {`${currentUser.name}`}</p>
-        {currentUser.organization_id ? <EditOrgForm org={userOrgs}/>:<p>You aren't currently a part of any organizations. Please join or create one.</p>}
         <h1>Organizations</h1>
         <OrgList currentUser={currentUser} orgs={orgs} setOrgs={setOrgs}/>
         <NewOrgForm currentUser={currentUser} orgs={orgs} setOrgs={setOrgs}/>

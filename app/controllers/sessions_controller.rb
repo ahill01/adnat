@@ -3,12 +3,17 @@ class SessionsController < ApplicationController
         user = User.find_by(email: session_params[:email])
         if user && user.authenticate(session_params[:password])
             session[:user_id] = user.id
-            render json: user, response: :ok
+            render json: user, status: :ok
         else 
             render json: { 
                 errors: ['no such user', 'verify credentials and try again or signup']
               }, status: :not_found
             end
+    end
+
+    def index
+        user= User.find_by(id:session[:user_id])
+        render json: user, status: :ok
     end
 
     def destroy

@@ -15,7 +15,7 @@ class OrganizationsController < ApplicationController
     end
 
     def destroy
-
+        
     end
 
     def update

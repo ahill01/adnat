@@ -5,24 +5,24 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import LoginPage from './components/LoginPage'
 import SignupForm from './components/SignupForm';
-import OrgHome from "./components/OrgHome"
+import UserHome from "./components/UserHome"
 
 function App() {
 const [currentUser,setCurrentUser]=useState({})
-const [orgs, setOrgs]=useState([])
 
-useEffect(() => {
-  fetch('/organizations')
-.then(res => res.json())
-.then(orgsList => setOrgs(orgsList))}, [])
+useEffect(()=>{
+fetch(`/sessions/`)
+.then(res=> res.json())
+.then(user => setCurrentUser(user))},[])
 
   return (
     <div className="App">
+      <h1>Adnat</h1>
       <Router>
       <Routes>
       <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser}/>}/>
       <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />}/>
-      <Route path="/orghome" element={<OrgHome currentUser={currentUser} setCurrentUser={setCurrentUser} orgs={orgs} setOrgs={setOrgs}/>}/>
+      <Route path="/home" element={<UserHome currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
       </Routes>
       </Router>
     </div>

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
+  get '/sessions', to: "sessions#index"
+  get '/organizations/shifts/:organization_id', to: "shifts#index"
 end

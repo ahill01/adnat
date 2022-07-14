@@ -18,7 +18,7 @@ function handleLogin(e){
    })
    .then((user) => {
        setCurrentUser(user)
-       navigate('/orghome')
+       navigate('/home')
     })
     .catch((error) =>{
         console.log('error: '+error)

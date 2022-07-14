@@ -1,11 +1,12 @@
 class ShiftsController < ApplicationController
 
     def index
-        if params.include?(:user_id) then 
+        # if params.include?(:user_id) then 
 
-        end
-        if params.include(:organization_id) then
-
+        # end
+        if params.include?(:organization_id) then
+            shifts = Shift.where(organization_id: params[:organization_id])
+            render json: shifts, status: :ok
         end
 
     end 

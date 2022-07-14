@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 function NewOrgForm({currentUser,setCurrentUser,orgs,setOrgs}){
-const [newOrg, setNewOrg]=useState({name:"",rate:""})
+const [newOrg, setNewOrg]=useState({name:"",rate:0.00})
 
 function updateOrg(e){
     setNewOrg({...newOrg,[e.target.name]:e.target.value})
