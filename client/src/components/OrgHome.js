@@ -4,7 +4,7 @@ import OrgList from "./OrgList"
 import NewOrgForm from "./NewOrgForm"
 import EditOrgForm from "./EditOrgForm"
 
-function OrgHome({currentUser}){
+function OrgHome({currentUser,setCurrentUser}){
 const [orgs, setOrgs]=useState([])
 
 useEffect(() => {
@@ -16,7 +16,7 @@ useEffect(() => {
     return(<div>
         <h1>Organizations</h1>
         <OrgList currentUser={currentUser} orgs={orgs} setOrgs={setOrgs}/>
-        <NewOrgForm currentUser={currentUser} orgs={orgs} setOrgs={setOrgs}/>
+        <NewOrgForm currentUser={currentUser} setCurrentUser={setCurrentUser} orgs={orgs} setOrgs={setOrgs}/>
         </div>)
 }
 

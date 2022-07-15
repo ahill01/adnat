@@ -4,7 +4,7 @@ function Shifts({currentUser, shifts}){
 
     return(
 <table>
-    <tr>
+    <thead>
         <th>Employee Name</th>
         <th>Shift Date</th>
         <th>Start Time</th>
@@ -12,16 +12,17 @@ function Shifts({currentUser, shifts}){
         <th>Break Length</th>
         <th>Hours Worked</th>
         <th>Shift Cost</th>
-    </tr>
-    <tbody>
+    </thead>
+  <tbody>
     {shifts.map((shift) => {
-        {console.log(shift)}
-        <tr>
+        return<tr>
+        <td>{shift.employee_name}</td>
         <td>{shift.date}</td>
         <td>{shift.start_time}</td>
         <td>{shift.finish_time}</td>
         <td>{shift.break_length}</td>
         <td>{shift.hours_worked}</td>
+        <td>{shift.shift_cost}</td>
         </tr>
         })}
         <tr>

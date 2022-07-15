@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 function SignupForm({setCurrentUser,handleLogin}) {
 const [newUser, setNewUser] = useState({email:"",password:"",name:""})
 const[confPassword,setConfPassword]=useState("")
-
+let navigate = useNavigate()
 function updateUser(e){
     setNewUser({...newUser,[e.target.name]:e.target.value})
 }
@@ -23,6 +23,7 @@ function createUser(e){
         .then(res => res.json())
         .then(user => {
             alert("account created, you may now log in")
+            navigate("/")
         })
     } else if(confPassword!==newUser.password) {
         alert("passwords do not match")
@@ -46,7 +47,7 @@ return(<div className="signup">
     <br></br>
    <button type="submit">Create Account</button>
 </form>
-    <button>Log In</button>
+    <button onClick={()=>navigate("/")}>Log In</button>
 </div>)
 }
 export default SignupForm;
