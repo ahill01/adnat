@@ -23,11 +23,13 @@ class OrganizationsController < ApplicationController
     end
 
     def update
-
+        org = Organization.find(params[:id])
+        org.update(org_params)
+        render json: org, status: :ok
     end
 
     private
     def org_params
-        params.require(:newOrg).permit(:name, :hourly_rate)
+        params.permit(:name, :hourly_rate)
     end
 end

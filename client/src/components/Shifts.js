@@ -14,7 +14,7 @@ function Shifts({currentUser, shifts}){
         <th>Shift Cost</th>
     </thead>
   <tbody>
-    {shifts.map((shift) => {
+    {shifts[0] ? shifts.map((shift) => {
         return<tr>
         <td>{shift.employee_name}</td>
         <td>{shift.date}</td>
@@ -24,7 +24,7 @@ function Shifts({currentUser, shifts}){
         <td>{shift.hours_worked}</td>
         <td>{`$${shift.shift_cost}`}</td>
         </tr>
-        })}
+        }):null}
         <tr>
             <td>{currentUser.name}</td>
             <td><input type="text" name="date"></input></td>

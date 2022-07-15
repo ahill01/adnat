@@ -7,13 +7,14 @@ const [shifts,setShifts]=useState([])
 const [viewShifts,setViewShifts]=useState(false)
 const[editMode,setEditMode]=useState(false)
 
-    useEffect(()=>{
-        console.log("fetching shifts")
-        fetch(`/organizations/shifts/${currentUser.org.id}`)
-        .then(res=> res.json())
-        .then(shifts => setShifts(shifts))
-    },[])
-
+    
+useEffect(()=>{
+    console.log("fetching shifts")
+    fetch(`/organizations/shifts/${currentUser.org.id}`)
+    .then(res=> res.json())
+    //TODO: add if res.ok? logic
+    .then(shifts => setShifts(shifts))
+},[])
 
     function leaveOrg(){
         fetch(`/users/${currentUser.id}`,
@@ -30,7 +31,7 @@ const[editMode,setEditMode]=useState(false)
     <button onClick={() => setViewShifts(!viewShifts)}>View Shifts</button>
     <button onClick={() => setEditMode(!editMode)}>Edit</button>
     <button onClick={leaveOrg}>Leave</button>
-    {editMode ? <EditOrgForm org={currentUser.org}/> : null}
+    {editMode ? <EditOrgForm currentUser={currentUser} org={currentUser.org} setCurrentUser={setCurrentUser}/> : null}
     {viewShifts ? <Shifts currentUser={currentUser} shifts={shifts}/>:null}
         </div>)
     }
