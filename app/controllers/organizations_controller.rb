@@ -15,7 +15,11 @@ class OrganizationsController < ApplicationController
     end
 
     def destroy
-        
+        shifts = Shift.where("organization_id = ?",params[:id])
+        shifts.destroy
+        org = Organization.find(params[:id])
+        org.destroy
+        render json:org, status: :ok
     end
 
     def update

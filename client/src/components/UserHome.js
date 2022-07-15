@@ -4,14 +4,7 @@ import OrgOverview from './OrgOverview';
 import OrgHome from "./OrgHome"
 
 function UserHome({currentUser, setCurrentUser}){
-const[userOrgs,setUserOrgs]=useState({})
 let navigate = useNavigate();
-
-useEffect(()=>{
-    fetch(`/organizations/${currentUser.organization_id}`)
-    .then(res=> res.json())
-    .then(org => setUserOrgs(org))
-},[])
 
 function handleLogout(){
         fetch('/logout', {
@@ -33,8 +26,8 @@ function handleLogout(){
     return(<div>
         <p>logged in as {`${currentUser.name}`}</p>
         <button onClick={() => handleLogout()}> Log Out</button>
-        {currentUser.organization_id ? null: <p>You aren't currently a member of any organizations. Join an existing organization or create a new one.</p>}
-        {currentUser.organization_id ? <OrgOverview currentUser={currentUser} org={userOrgs}/>: <OrgHome currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+        {currentUser.org ? null: <p>You aren't currently a member of any organizations. Join an existing organization or create a new one.</p>}
+        {currentUser.org ? <OrgOverview currentUser={currentUser} setCurrentUser={setCurrentUser}/>: <OrgHome currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         </div>)
 }
 

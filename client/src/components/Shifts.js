@@ -8,8 +8,8 @@ function Shifts({currentUser, shifts}){
         <th>Employee Name</th>
         <th>Shift Date</th>
         <th>Start Time</th>
-        <th>Finish TIme</th>
-        <th>Break Length</th>
+        <th>Finish Time</th>
+        <th>Break Length (minutes)</th>
         <th>Hours Worked</th>
         <th>Shift Cost</th>
     </thead>
@@ -22,7 +22,7 @@ function Shifts({currentUser, shifts}){
         <td>{shift.finish_time}</td>
         <td>{shift.break_length}</td>
         <td>{shift.hours_worked}</td>
-        <td>{shift.shift_cost}</td>
+        <td>{`$${shift.shift_cost}`}</td>
         </tr>
         })}
         <tr>

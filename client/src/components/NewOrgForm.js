@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-function NewOrgForm({currentUser,setCurrentUser,orgs,setOrgs}){
+function NewOrgForm({orgs,setOrgs,joinOrg}){
 const [newOrg, setNewOrg]=useState({name:"",rate:0.00})
 
 function updateOrg(e){
@@ -17,19 +17,7 @@ function createOrg(e){
    .then(org => {
     joinOrg(org)
     setOrgs(...orgs,org)
-    console.log.log(orgs)})
-}
-
-function joinOrg(org){
-    fetch(`/users/${currentUser.id}`,
-    {method:'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({...currentUser,organization_id:org.id})
     })
-    .then(res => res.json())
-    .then(user => {
-        console.log(user)
-        setCurrentUser(user)})
 }
 
     return(<div>

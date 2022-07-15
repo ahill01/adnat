@@ -1,8 +1,8 @@
 class ShiftSerializer < ActiveModel::Serializer
-    attributes :employee, :date, :start_time, :finish_time, :break_length, :hours_worked, :shift_cost
+    attributes :employee_name, :date, :start_time, :finish_time, :break_length, :hours_worked, :shift_cost
 
-    def employee
-        return User.find(self.object.user_id)
+    def employee_name
+        return User.find(self.object.user_id).name
     end
     def start_time
        return self.object.start.strftime('%I:%M:%S :%p')
