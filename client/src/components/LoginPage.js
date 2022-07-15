@@ -40,7 +40,7 @@ return (
         <input type="password" name="password" value={`${credentials.password}`}onChange={updateCredentials}></input>
        <button type="submit">Log In</button>
    </form>
-   <button >Sign Up</button>
+   <button onClick={() => navigate("/signup")}>Sign Up</button>
    <button>Forgot Your Password?</button>
 </div>);
 }

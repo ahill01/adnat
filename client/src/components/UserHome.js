@@ -33,8 +33,9 @@ function handleLogout(){
     return(<div>
         <p>logged in as {`${currentUser.name}`}</p>
         <button onClick={() => handleLogout()}> Log Out</button>
-        {console.log(currentUser.organization_id)}
+        {currentUser.organization_id ? null: <p>You aren't currently a member of any organizations. Join an existing organization or create a new one.</p>}
         {currentUser.organization_id ? <OrgOverview currentUser={currentUser} org={userOrgs}/>: <OrgHome currentUser={currentUser}/>}
+      
         </div>)
 }
 

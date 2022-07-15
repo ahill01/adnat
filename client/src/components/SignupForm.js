@@ -8,23 +8,6 @@ const[confPassword,setConfPassword]=useState("")
 function updateUser(e){
     setNewUser({...newUser,[e.target.name]:e.target.value})
 }
-function newUserLogin(user){
-    fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email:user.email,password:user.password}) 
-   })
-   .then(res=> {
-    if(!res.ok) throw new Error(res.status);
-    else return res.json();
-   })
-   .then((user) => {
-       setCurrentUser(user)
-    })
-    .catch((error) =>{
-        console.log('error: '+error)
-    })
-}
 
 function createUser(e){
     e.preventDefault()
@@ -38,9 +21,8 @@ function createUser(e){
             body:JSON.stringify(newUser)
         })
         .then(res => res.json())
-        .then(newUser => {
-            setCurrentUser(newUser)
-
+        .then(user => {
+            alert("account created, you may now log in")
         })
     } else if(confPassword!==newUser.password) {
         alert("passwords do not match")

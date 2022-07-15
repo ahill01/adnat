@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from "react"
 
 function Shifts({currentUser, shifts}){
-    
 
-
-    return(<div>
+    return(
 <table>
-    <thead>
     <tr>
         <th>Employee Name</th>
         <th>Shift Date</th>
@@ -16,7 +13,6 @@ function Shifts({currentUser, shifts}){
         <th>Hours Worked</th>
         <th>Shift Cost</th>
     </tr>
-    </thead>
     <tbody>
     {shifts.map((shift) => {
         {console.log(shift)}
@@ -37,9 +33,7 @@ function Shifts({currentUser, shifts}){
             <td><button>create shift</button></td>
         </tr>
         </tbody>
-     
-</table>
-    </div>)
+</table>)
 }
 
 export default Shifts;
