@@ -1,10 +1,10 @@
 import React from "react"
 import OrgDetails from "./OrgDetails"
 
-function OrgList({currentUser, orgs, setOrgs,joinOrg}){
+function OrgList({currentUser, orgs, setAllOrgs,joinOrg}){
 
     return(<div>
-{orgs.map((org) => <OrgDetails key={org.id} currentUser={currentUser} org={org} joinOrg={joinOrg}/> )}
+{orgs.map((org) => <OrgDetails key={org.id} setAllOrgs={setAllOrgs} org={org} joinOrg={joinOrg}/> )}
         </div>)
 }
 

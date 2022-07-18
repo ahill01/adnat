@@ -26,7 +26,7 @@ useEffect(()=>{
     console.log("getting user orgs")
     fetch(`/users/${currentUser.id}/organizations`)
     .then(res=> res.json())
-    .then(orgs => setUserOrgs(orgs))},[allOrgs])
+    .then(orgs => setUserOrgs(orgs))},[allOrgs,currentUser])
 
 
   return (

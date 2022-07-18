@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-function EditOrgForm({userOrgs,org}){
+function EditOrgForm({userOrgs,setAllOrgs,org}){
 const[orgInfo,setOrgInfo]=useState(org)
 
     function editUserOrg(e){
@@ -17,8 +17,9 @@ const[orgInfo,setOrgInfo]=useState(org)
    .then(res => res.json())
    .then(updated_org => {
     alert("organization has been updated")
-    
-    console.log(updated_org)})
+    setAllOrgs(prevState => prevState.filter((org_elem) => org_elem.id !== org.id))
+    setAllOrgs(prevState => [...prevState,org])
+  })
     }
 
     function deleteOrg(org){
