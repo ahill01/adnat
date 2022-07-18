@@ -6,10 +6,12 @@ class OrganizationUsersController < ApplicationController
 
     def destroy
        org_user = OrganizationUser.find_by(user_id:params[:user_id],organization_id:params[:organization_id])
-       shifts = Shift.where("user_id = ? AND organization_id = ?")
+       shifts = Shift.where("user_id = ? AND organization_id = ?",params[:user_id],params[:organization_id])
        shifts.each do |shift|
+        byebug;
         if(shift.start > Time.now())
             shift.destroy
+        end
        end
        org_user.destroy
        render json: org_user, status: :ok
@@ -17,7 +19,7 @@ class OrganizationUsersController < ApplicationController
 
     private
     def org_user_params
-        params.permit(:organization_id,:user_id)
+        params.require(:organization_user).permit(:organization_id,:user_id)
     end
     
 end

@@ -5,6 +5,7 @@ class ShiftsController < ApplicationController
         # end
         if params.include?(:organization_id) then
             shifts = Shift.where(organization_id: params[:organization_id])
+            shifts.sort
             render json: shifts, status: :ok
         end
 
@@ -33,7 +34,7 @@ class ShiftsController < ApplicationController
                 shift.destroy
             end
             render json:"shifts deleted", status: :ok
-        end
+        end  
     end
 
     private
