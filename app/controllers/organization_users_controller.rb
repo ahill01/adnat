@@ -6,6 +6,11 @@ class OrganizationUsersController < ApplicationController
 
     def destroy
        org_user = OrganizationUser.find_by(user_id:params[:user_id],organization_id:params[:organization_id])
+       shifts = Shift.where("user_id = ? AND organization_id = ?")
+       shifts.each do |shift|
+        if(shift.start > Time.now())
+            shift.destroy
+       end
        org_user.destroy
        render json: org_user, status: :ok
     end

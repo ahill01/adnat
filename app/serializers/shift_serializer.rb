@@ -9,7 +9,7 @@ class ShiftSerializer < ActiveModel::Serializer
     end
 
     def finish_time
-      return self.object.start.strftime('%I:%M:%S :%p')
+      return self.object.finish.strftime('%I:%M:%S :%p')
     end
 
     def date

@@ -32,7 +32,7 @@ useEffect(()=>{
     <button onClick={() => setEditMode(!editMode)}>Edit</button>
     <button onClick={leaveOrg}>Leave</button>
     {editMode ? <EditOrgForm currentUser={currentUser} setAllOrgs={setAllOrgs} org={org} setCurrentUser={setCurrentUser}/> : null}
-    {viewShifts ? <Shifts currentUser={currentUser} shifts={shifts}/>:null}
+    {viewShifts ? <Shifts currentUser={currentUser} org={org} shifts={shifts} setShifts={setShifts}/>:null}
         </div>)
     }
     

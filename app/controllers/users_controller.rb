@@ -15,6 +15,7 @@ class UsersController < ApplicationController
         deleted_usr.destroy
         render json: deleted_usr, status: 200
     end
+
     
     def organizations_index
         user_orgs = []
