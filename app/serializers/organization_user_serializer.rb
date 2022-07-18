@@ -3,7 +3,4 @@ class OrganizationUserSerializer < ActiveModel::Serializer
   has_one :organization
   has_one :user
 
-  def org
-    debugger;
-  end
 end

@@ -14,12 +14,18 @@ const[orgInfo,setOrgInfo]=useState(org)
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name:orgInfo.name,hourly_rate:orgInfo.hourly_rate}) 
    })
-   .then(res => res.json())
+   .then(res=> {
+    if(!res.ok) throw new Error(res.status);
+    else {
+        return res.json()};
+   })
    .then(updated_org => {
     alert("organization has been updated")
-    setAllOrgs(prevState => prevState.filter((org_elem) => org_elem.id !== org.id))
-    setAllOrgs(prevState => [...prevState,org])
+    setAllOrgs(prevState => {return prevState.filter((org_elem) => org_elem.id !== updated_org.id).push(updated_org)})
   })
+  .catch((error) =>{
+    console.log('error: '+error)
+})
     }
 
     function deleteOrg(org){
@@ -32,11 +38,13 @@ const[orgInfo,setOrgInfo]=useState(org)
     else {
         return res.json()};
    })
+   .then(deleted_org => {
+    setAllOrgs(prevState => prevState.filter((org_elem) => org_elem.id !== deleted_org.id))
+   })
     .catch((error) =>{
         console.log('error: '+error)
     })
-    }
-
+  }
     return(<div>
   <h3>Edit Organization</h3>
 <form onSubmit={updateOrg}>

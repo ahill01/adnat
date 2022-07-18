@@ -16,6 +16,10 @@ class OrganizationsController < ApplicationController
 
     def destroy
         org = Organization.find(params[:id])
+        org_users = OrganizationUser.where("organization_id = ?",params[:id])
+        org_users.each do |org_user|
+            org_user.destroy
+        end
         org.delete
         render json:org, status: :ok
     end
