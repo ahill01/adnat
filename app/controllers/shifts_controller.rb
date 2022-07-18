@@ -4,8 +4,7 @@ class ShiftsController < ApplicationController
         # if params.include?(:user_id) then 
         # end
         if params.include?(:organization_id) then
-            shifts = Shift.where(organization_id: params[:organization_id])
-            shifts.sort
+            shifts = Shift.order("start DESC").where(organization_id: params[:organization_id])
             render json: shifts, status: :ok
         end
 

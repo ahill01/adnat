@@ -11,7 +11,6 @@ function handleChange(e){
 function createShift(){
     let start_date=new Date(shiftInfo.date.toString()+"T"+shiftInfo.start.toString())
     let finish_date=new Date(shiftInfo.date.toString()+"T"+shiftInfo.finish.toString())
-    debugger;
     fetch('/shifts', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -28,13 +27,10 @@ function createShift(){
    })
    .then((new_shift) => {
       setShifts([...shifts,new_shift])
-      debugger;
     })
     .catch((error) =>{
         console.log('error: '+error)
     })
-
-
 }
     return(
 <table>
