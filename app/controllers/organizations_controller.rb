@@ -15,10 +15,8 @@ class OrganizationsController < ApplicationController
     end
 
     def destroy
-        shifts = Shift.where("organization_id = ?",params[:id])
-        shifts.destroy
         org = Organization.find(params[:id])
-        org.destroy
+        org.delete
         render json:org, status: :ok
     end
 
@@ -30,6 +28,6 @@ class OrganizationsController < ApplicationController
 
     private
     def org_params
-        params.permit(:name, :hourly_rate)
+        params.require(:organization).permit(:name, :hourly_rate)
     end
 end

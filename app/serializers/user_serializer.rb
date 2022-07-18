@@ -1,11 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-    attributes :id, :name, :email, :org
-
-# TODO: figure out how to get it to play nice w/ null
-#TODO: refactor to many-to-many relationship
-
-    def org 
-        org = Organization.find(self.object.organization_id)
-        return org
+    attributes :id, :name, :email, :no_orgs
+    
+    def no_orgs
+       return self.object.organization_users.length === 0 
     end
 end

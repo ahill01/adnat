@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import EditOrgForm from "./EditOrgForm";
 
-function OrgDetails({currentUser, org,joinOrg}){
+function OrgDetails({org,joinOrg}){
 const[editMode,setEditMode]=useState(false)
 
     return(<div>

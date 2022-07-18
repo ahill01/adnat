@@ -18,7 +18,7 @@ function handleLogin(e){
    })
    .then((user) => {
        setCurrentUser(user)
-       navigate('/home')
+       if(user.no_orgs) {navigate('/join')} else navigate('/home')
     })
     .catch((error) =>{
         console.log('error: '+error)

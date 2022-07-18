@@ -15,6 +15,14 @@ class UsersController < ApplicationController
         deleted_usr.destroy
         render json: deleted_usr, status: 200
     end
+    
+    def organizations_index
+        user_orgs = []
+        OrganizationUser.where("user_id = ?", params[:user_id]).each do |o| 
+             user_orgs <<  Organization.find(o.organization_id)
+          end
+         render json:user_orgs, status: :ok
+    end
 
     private
     def user_params

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react"
 
-function EditOrgForm({currentUser, setCurrentUser, org}){
-const [orgInfo, setOrgInfo]=useState(org)
+function EditOrgForm({userOrgs,org}){
+const[orgInfo,setOrgInfo]=useState(org)
+
     function editUserOrg(e){
         setOrgInfo({...orgInfo,[e.target.name]:e.target.value})
     }
@@ -14,11 +15,27 @@ const [orgInfo, setOrgInfo]=useState(org)
         body: JSON.stringify({name:orgInfo.name,hourly_rate:orgInfo.hourly_rate}) 
    })
    .then(res => res.json())
-   .then(org => {
-    alert("organization has been supdated")
-    setCurrentUser({...currentUser,org:org})
+   .then(updated_org => {
+    alert("organization has been updated")
+    
+    console.log(updated_org)})
+    }
+
+    function deleteOrg(org){
+      fetch(`/organizations/${org.id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+   })
+   .then(res=> {
+    if(!res.ok) throw new Error(res.status);
+    else {
+        return res.json()};
+   })
+    .catch((error) =>{
+        console.log('error: '+error)
     })
     }
+
     return(<div>
   <h3>Edit Organization</h3>
 <form onSubmit={updateOrg}>
@@ -30,7 +47,7 @@ const [orgInfo, setOrgInfo]=useState(org)
     <br/>
    <button type="submit">Update</button>
 </form>
-        <button>Delete</button>
+        <button onClick={()=>deleteOrg(org)}>Delete</button>
     </div>)
 }
 

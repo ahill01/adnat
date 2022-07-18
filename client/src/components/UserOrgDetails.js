@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import Shifts from "./Shifts"
 import EditOrgForm from "./EditOrgForm"
 
-function OrgOverview({currentUser,setCurrentUser}){
+function UserOrgDetails({currentUser,setCurrentUser, setUserOrgs, setAllOrgs, org}){
 const [shifts,setShifts]=useState([])
 const [viewShifts,setViewShifts]=useState(false)
 const[editMode,setEditMode]=useState(false)
@@ -10,30 +10,30 @@ const[editMode,setEditMode]=useState(false)
     
 useEffect(()=>{
     console.log("fetching shifts")
-    fetch(`/organizations/shifts/${currentUser.org.id}`)
+    fetch(`/organizations/shifts/${org.id}`)
     .then(res=> res.json())
     //TODO: add if res.ok? logic
     .then(shifts => setShifts(shifts))
 },[])
 
     function leaveOrg(){
-        fetch(`/users/${currentUser.id}`,
-      {method:'PATCH',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({...currentUser,organization_id:null})
+        fetch(`/organization_users/user/${currentUser.id}/${org.id}`,
+      {method:'DELETE',
+      headers: {'Content-Type': 'application/json'}
       })
       .then(res => res.json())
-      .then(user => {
-          setCurrentUser(user)})
+      .then(user_org => {
+        setUserOrgs(prevOrgs => prevOrgs.filter(org => org.id !== user_org.organization.id))
+    })
     }
         return(<div>
-    <h2>{currentUser.org? currentUser.org.name:null}</h2>
+    <h2>{org.name}</h2>
     <button onClick={() => setViewShifts(!viewShifts)}>View Shifts</button>
     <button onClick={() => setEditMode(!editMode)}>Edit</button>
     <button onClick={leaveOrg}>Leave</button>
-    {editMode ? <EditOrgForm currentUser={currentUser} org={currentUser.org} setCurrentUser={setCurrentUser}/> : null}
+    {editMode ? <EditOrgForm currentUser={currentUser} setAllOrgs={setAllOrgs} org={org} setCurrentUser={setCurrentUser}/> : null}
     {viewShifts ? <Shifts currentUser={currentUser} shifts={shifts}/>:null}
         </div>)
     }
     
-    export default OrgOverview;
+    export default UserOrgDetails;
