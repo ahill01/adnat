@@ -1,8 +1,28 @@
 # README
 
 This is my work sample for WeWork's Adnat Ruby on Rails challenge. 
+# Setup Instructsions
 
-Key Tasks
+## Starting the Server
+pull up a terminal within the /adnat-allison folder and run the following commands:  
+1. bundle install
+2. rails db:migrate db:seed
+3. rails s 
+This will start the server on port 3000, with several demo accounts loaded into the database. 
+
+### Demo Account Login Info
+email: a@email.com password:123456
+
+email: b@email.com password:123456
+
+email: c@email.com password:123456
+
+## Starting the Front End Client
+pull up another terminal within /adnat-allison/client and run the following commands: 
+1. npm install && npm start
+This will start the front-end client on port 4000 & make the app accessible on the web-browser at the domain http://localhost:4000/
+
+# Key Tasks
 
 * User, Organizations, Shifts, Users models
 
