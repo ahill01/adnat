@@ -22,13 +22,12 @@ useEffect(()=>{
   .then(res=> res.json())
   .then(orgs => setAllOrgs(orgs))},[])
 
-  useEffect(()=>{
-    console.log("getting user orgs")
+  useEffect(()=>
+    {if(currentUser.id !== null){
     fetch(`/users/${currentUser.id}/organizations`)
     .then(res=> res.json())
-    .then(orgs => setUserOrgs(orgs))},[allOrgs,currentUser])
-
-
+    .then(orgs => setUserOrgs(orgs))}},[allOrgs,currentUser])
+  
   return (
     <div className="App">
       <h1>Adnat</h1>
