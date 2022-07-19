@@ -3,6 +3,7 @@
 This is my work sample for WeWork's Adnat Ruby on Rails challenge. 
 
 # Setup Instructsions
+Download the zip file or create a clone of the repository's main branch. 
 
 ## Starting the Server
 pull up a terminal within the **/adnat-allison-main** folder and run the following commands:  
@@ -41,7 +42,7 @@ email: c@email.com password:123456
 
 * session controller, log in function on front end that graps user entered credentials & directs post request to "/login" to create function in sessions controller
 
-> Signup Page: includes Name, Email, Password, Password confirmation [IN PROGRESS:Logs in new user]
+> Signup Page: includes Name, Email, Password, Password confirmation [DONE]
 * checks passwords match, are proper length before sending to database 
 
 > Prompt new users to join a new organization (or create one) [DONE]
@@ -78,4 +79,3 @@ STRETCH:
 > multiple organizations [DONE]
 
 > full nav bar [NOT STARTED]
-* ...
