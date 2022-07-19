@@ -23,7 +23,7 @@ useEffect(()=>{
   .then(orgs => setAllOrgs(orgs))},[])
 
   useEffect(()=>
-    {if(currentUser.id !== null){
+    {if(currentUser){
     fetch(`/users/${currentUser.id}/organizations`)
     .then(res=> res.json())
     .then(orgs => setUserOrgs(orgs))}},[allOrgs,currentUser])

@@ -11,8 +11,8 @@ User.create(name:"Claire Crawford",email:"c@email.com",password:"123456")
 puts("Seeding Organization-Users joins")
 OrganizationUser.create(user_id:1,organization_id:1)
 OrganizationUser.create(user_id:1,organization_id:2)
-OrganizationUser.create(user_id:2,organization_id:2)
-OrganizationUser.create(user_id:3,organization_id:1)
+OrganizationUser.create(user_id:2,organization_id:1)
+OrganizationUser.create(user_id:3,organization_id:2)
 
 puts("seeding shifts")
 Shift.create(start:DateTime.new(2022,7,7,10),finish:DateTime.new(2022,7,7,15),user_id:1,organization_id:1,break_length:15)
@@ -21,7 +21,7 @@ Shift.create(start:DateTime.new(2022,7,8,10),finish:DateTime.new(2022,7,8,15),us
 
 Shift.create(start:DateTime.new(2022,7,9,10),finish:DateTime.new(2022,7,9,15),user_id:1,organization_id:1,break_length:15)
 
-Shift.create(start:DateTime.new(2022,7,10,10),finish:DateTime.new(2022,7,7,15),user_id:1,organization_id:1,break_length:15)
+Shift.create(start:DateTime.new(2022,7,10,10),finish:DateTime.new(2022,7,10,15),user_id:1,organization_id:1,break_length:15)
 
 Shift.create(start:DateTime.new(2022,7,7,8),finish:DateTime.new(2022,7,7,10),user_id:2,organization_id:1,break_length:10)
 
